@@ -10,7 +10,7 @@ import Alamofire
 import Combine
 import NetworkEntityPackage
 
-final class ApiManager: ApiManagerInterface {
+final public class ApiManager: ApiManagerInterface {
 
     private var session: Session!
     private var jsonDecoder = JSONDecoder()

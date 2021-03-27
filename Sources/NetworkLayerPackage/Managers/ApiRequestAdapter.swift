@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-final class ApiRequestAdapter: RequestAdapter {
+final public class ApiRequestAdapter: RequestAdapter {
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         

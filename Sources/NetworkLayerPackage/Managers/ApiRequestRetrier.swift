@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-final class ApiRequestRetrier: RequestRetrier {
+final public class ApiRequestRetrier: RequestRetrier {
 
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         

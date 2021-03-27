@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-final class ApiDefaultEventMonitoringManager: EventMonitor {
+final public class ApiDefaultEventMonitoringManager: EventMonitor {
     
     func request(_ request: Request, didCompleteTask task: URLSessionTask, with error: AFError?) {
         
