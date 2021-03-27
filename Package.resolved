@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
+          "version": "5.4.1"
+        }
+      },
+      {
+        "package": "NetworkEntityPackage",
+        "repositoryURL": "https://github.com/erkutbas0/NetworkEntityPackage.git",
+        "state": {
+          "branch": null,
+          "revision": "6805465c864ccba924b5b28304e62c58d4498f7b",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
