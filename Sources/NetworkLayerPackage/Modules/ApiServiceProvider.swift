@@ -22,7 +22,7 @@ open class ApiServiceProvider<T: Codable>: URLRequestConvertible {
     ///   - path: url path, default value is nil
     ///   - isAuthRequested: it's used to pass accessToken to header or not. Default value is true
     ///   - data: Codable data. If request is post, patch or put it's used as body otherwise as query string
-    init(baseUrl: String, method: HTTPMethod = .get, path: String? = nil, isAuthRequested: Bool = true, data: T? = nil) {
+    public init(baseUrl: String, method: HTTPMethod = .get, path: String? = nil, isAuthRequested: Bool = true, data: T? = nil) {
         self.baseUrl = baseUrl
         self.method = method
         self.path = path
