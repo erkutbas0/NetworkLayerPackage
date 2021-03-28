@@ -27,7 +27,7 @@ final public class ApiManager: ApiManagerInterface {
         
     }
     
-    func execute<R>(_ urlRequestConvertible: URLRequestConvertible) -> Future<R, ErrorResponse> where R : Decodable, R : Encodable {
+    public func execute<R>(_ urlRequestConvertible: URLRequestConvertible) -> Future<R, ErrorResponse> where R : Decodable, R : Encodable {
         
         return Future { (promise) in
             self.session.request(urlRequestConvertible).validate().response { (data) in

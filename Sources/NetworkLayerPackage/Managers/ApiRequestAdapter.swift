@@ -10,9 +10,7 @@ import Alamofire
 
 final public class ApiRequestAdapter: RequestAdapter {
     
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        
-        
+    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         
     }
     
