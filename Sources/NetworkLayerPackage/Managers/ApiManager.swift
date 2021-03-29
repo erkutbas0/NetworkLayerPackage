@@ -15,7 +15,7 @@ final public class ApiManager: ApiManagerInterface {
     private var session: Session!
     private var jsonDecoder = JSONDecoder()
     
-    init(interceptor: RequestInterceptor? = nil, eventMonitoringModules: [EventMonitor] = [EventMonitor]()) {
+    public init(interceptor: RequestInterceptor? = nil, eventMonitoringModules: [EventMonitor] = [EventMonitor]()) {
         
         let configuration = URLSessionConfiguration.ephemeral
         configuration.timeoutIntervalForRequest = 60
