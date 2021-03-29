@@ -10,19 +10,24 @@ import Valet
 
 public final class TokenProvider: TokenProviderInterface {
     
-    public func setAccessToken(with data: String) {
+    public init() {
         
     }
     
+    public func setAccessToken(with data: String) {
+        AccessTokenDataStore.currentAccessToken = data
+    }
+    
     public func setRefreshToken(with data: String) {
+        AccessTokenDataStore.currentRefreshToken = data
     }
     
     public func getAccessToken() -> String? {
-        return nil
+        return AccessTokenDataStore.currentAccessToken
     }
     
     public func getRefreshToken() -> String? {
-        return nil
+        return AccessTokenDataStore.currentRefreshToken
     }
     
 }
