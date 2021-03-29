@@ -10,12 +10,21 @@ import Alamofire
 
 final public class ApiRequestAdapter: RequestAdapter {
     
-    public init() {
-        
+    private let tokenProvider: TokenProviderInterface
+    
+    public init(tokenProvider: TokenProviderInterface) {
+        self.tokenProvider = tokenProvider
     }
     
     public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        completion(.success(urlRequest))
+        var request: URLRequest = urlRequest
+        insertAccessToken(to: &request)
+        completion(.success(request))
+    }
+    
+    private func insertAccessToken(to urlRequest: inout URLRequest) {
+        guard let accessToken = tokenProvider.getAccessToken() else { return }
+        urlRequest.addValue(accessToken, forHTTPHeaderField: "Authorization")
     }
     
 }
