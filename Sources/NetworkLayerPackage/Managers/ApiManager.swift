@@ -29,7 +29,7 @@ final public class ApiManager: ApiManagerInterface {
     
     public func execute<R>(_ urlRequestConvertible: URLRequestConvertible) -> Future<R, ErrorResponse> where R : Decodable, R : Encodable {
         
-        return Future { (promise) in
+        return Future<R, ErrorResponse> { (promise) in
             self.session.request(urlRequestConvertible).validate().response { (data) in
                 self.responseParser(with: data, via: promise)
             }
@@ -80,5 +80,8 @@ final public class ApiManager: ApiManagerInterface {
         return underlyingError._code
     }
     
+    deinit {
+        print("DEINIT ApiManager")
+    }
     
 }
