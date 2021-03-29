@@ -8,14 +8,14 @@
 import Foundation
 import Alamofire
 
-final public class ApiDefaultEventMonitoringManager: EventMonitor {
+final public class ApiDefaultEventMonitoringManager: EventMonitoringDelegate {
     
     public init() {
         
     }
     
-    public func request(_ request: Request, didCompleteTask task: URLSessionTask, with error: AFError?) {
-        
+    public var eventMonitoringModules: [EventMonitor] {
+        return [SampleEventMonitorModule()]
     }
     
 }
