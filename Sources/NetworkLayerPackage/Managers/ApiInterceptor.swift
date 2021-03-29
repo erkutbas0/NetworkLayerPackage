@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 final public class ApiInterceptor: Interceptor {
-    
-    override init(adapter: RequestAdapter, retrier: RequestRetrier) {
+
+    override public init(adapter: RequestAdapter, retrier: RequestRetrier) {
         super.init(adapter: adapter, retrier: retrier)
     }
     

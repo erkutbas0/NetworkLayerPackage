@@ -10,6 +10,10 @@ import Alamofire
 
 final public class ApiDefaultEventMonitoringManager: EventMonitor {
     
+    public init() {
+        
+    }
+    
     public func request(_ request: Request, didCompleteTask task: URLSessionTask, with error: AFError?) {
         
     }
