@@ -30,4 +30,9 @@ public final class TokenProvider: TokenProviderInterface {
         return AccessTokenDataStore.currentRefreshToken
     }
     
+    func removeTokens() {
+        AccessTokenDataStore.currentAccessToken = nil
+        AccessTokenDataStore.currentRefreshToken = nil
+    }
+    
 }

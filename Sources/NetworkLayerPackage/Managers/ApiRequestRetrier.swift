@@ -10,12 +10,15 @@ import Alamofire
 
 final public class ApiRequestRetrier: RequestRetrier {
 
-    public init() {
-        
+    private let tokenProvider: TokenProviderInterface
+    
+    public init(tokenProvider: TokenProviderInterface) {
+        self.tokenProvider = tokenProvider
     }
     
     public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         print("retry")
+        
         guard let task = request.task, let response = task.response as? HTTPURLResponse else {
             completion(.doNotRetry)
             return

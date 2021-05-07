@@ -10,12 +10,14 @@ import Alamofire
 
 final public class ApiDefaultEventMonitoringManager: EventMonitoringDelegate {
     
-    public init() {
-        
+    private let sampleEventMonitorModule: SampleEventMonitorModule
+    
+    public init(sampleEventMonitorModule: SampleEventMonitorModule) {
+        self.sampleEventMonitorModule = sampleEventMonitorModule
     }
     
     public var eventMonitoringModules: [EventMonitor] {
-        return [SampleEventMonitorModule()]
+        return [sampleEventMonitorModule]
     }
     
 }
