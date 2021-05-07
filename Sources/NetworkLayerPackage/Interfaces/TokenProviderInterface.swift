@@ -15,4 +15,5 @@ public protocol TokenProviderInterface {
     func getAccessToken() -> String?
     func getRefreshToken() -> String?
     
+    public func removeTokens()
 }
