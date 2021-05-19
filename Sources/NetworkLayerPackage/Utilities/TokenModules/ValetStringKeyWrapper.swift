@@ -19,6 +19,9 @@ final class ValetStringKeyWrapper {
     init(_ key: String, value: String?) {
         self.key = key
         self.value = value
+        
+        guard let identifier = Identifier(nonEmpty: "ValetStringKeyWrapperIdentifier") else { return }
+        valet = Valet.valet(with: identifier, accessibility: .whenUnlocked)
     }
     
     var wrappedValue: String? {
