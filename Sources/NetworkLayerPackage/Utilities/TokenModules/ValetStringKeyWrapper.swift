@@ -31,8 +31,11 @@ final class ValetStringKeyWrapper {
         }
         
         set {
-            guard let data = newValue else { return }
-            try? valet?.setString(data, forKey: key)
+            if let data = newValue {
+                try? valet?.setString(data, forKey: key)
+            } else {
+                try? valet?.removeObject(forKey: key)
+            }
         }
     }
     
