@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
-          "version": "5.4.1"
+          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
+          "version": "5.4.3"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/erkutbas0/NetworkEntityPackage.git",
         "state": {
           "branch": null,
-          "revision": "6805465c864ccba924b5b28304e62c58d4498f7b",
-          "version": "1.0.0"
+          "revision": "84f9fc93e7d3892d4cff92b9d5454918c893ee50",
+          "version": "1.0.3"
         }
       },
       {
