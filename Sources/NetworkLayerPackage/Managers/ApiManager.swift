@@ -45,8 +45,8 @@ final public class ApiManager: ApiManagerInterface {
             if let data = alamofireData.data {
                 do {
                     // server side returns logical business error message
-                    let dataDecoded = try jsonDecoder.decode(ErrorResponse.self, from: data)
-                    promise(.failure(dataDecoded.setApiConnectionErrorType(by: .serverError(self.returnStatusCode(data: data)))))
+                    var dataDecoded = try jsonDecoder.decode(ErrorResponse.self, from: data)
+                    promise(.failure(dataDecoded.setApiConnectionErrorType(by: .serverError(self.returnStatusCode(data: alamofireData)))))
                     //let dataDecoded = try jsonDecoder.decode(ServerResponse.self, from: data)
                     //promise(.failure(ErrorResponse(serverResponse: dataDecoded, apiConnectionErrorType: .serverError(self.returnStatusCode(data: alamofireData)))))
                 } catch _ {
