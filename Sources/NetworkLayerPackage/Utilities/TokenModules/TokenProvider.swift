@@ -38,9 +38,15 @@ public final class TokenProvider: TokenProviderInterface {
     }
     
     public func refreshAccessToken(with completion: @escaping (Bool) -> Void) {
-        tokendIdManager.refreshAccessToken { [weak self] newToken in
-            self?.setAccessToken(with: newToken)
-            completion(true)
+        tokendIdManager.refreshAccessToken { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("error : \(error)")
+                completion(false)
+            case .success(let newToken):
+                self?.setAccessToken(with: newToken)
+                completion(true)
+            }
         }
     }
     
