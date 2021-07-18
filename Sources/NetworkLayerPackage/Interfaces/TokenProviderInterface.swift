@@ -16,4 +16,6 @@ public protocol TokenProviderInterface {
     func getRefreshToken() -> String?
     
     func removeTokens()
+    
+    func refreshAccessToken(with completion: @escaping (Bool) -> Void)
 }
