@@ -15,15 +15,26 @@ final public class ApiManager: ApiManagerInterface {
     private var session: Session!
     private var jsonDecoder = JSONDecoder()
     
-    public init(interceptor: RequestInterceptor? = nil, eventMonitoringManager: EventMonitoringDelegate) {
+//    public init(interceptor: RequestInterceptor? = nil, eventMonitoringManager: EventMonitoringDelegate) {
+//
+//        let configuration = URLSessionConfiguration.ephemeral
+//        configuration.timeoutIntervalForRequest = 60
+//        configuration.requestCachePolicy = .reloadIgnoringCacheData
+//
+//        // add server trust manager
+//
+//        session = Session(configuration: configuration, startRequestsImmediately: true, interceptor: interceptor, eventMonitors: eventMonitoringManager.eventMonitoringModules)
+//
+//    }
+    
+    public init(interceptor: RequestInterceptor? = nil, eventMonitors: [EventMonitor] = []) {
         
         let configuration = URLSessionConfiguration.ephemeral
         configuration.timeoutIntervalForRequest = 60
         configuration.requestCachePolicy = .reloadIgnoringCacheData
         
         // add server trust manager
-        
-        session = Session(configuration: configuration, startRequestsImmediately: true, interceptor: interceptor, eventMonitors: eventMonitoringManager.eventMonitoringModules)
+        session = Session(configuration: configuration, startRequestsImmediately: true, interceptor: interceptor, eventMonitors: eventMonitors)
         
     }
     
