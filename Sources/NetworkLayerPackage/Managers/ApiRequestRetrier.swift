@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import CredentialManagement
 
 final public class ApiRequestRetrier: RequestRetrier {
 
@@ -14,9 +15,9 @@ final public class ApiRequestRetrier: RequestRetrier {
     private let refreshingLock = NSLock()
     
     // MARK: - Injected Modules -
-    private let tokenProvider: TokenProviderInterface
+    private let tokenProvider: TokenProviderProtocol
     
-    public init(tokenProvider: TokenProviderInterface) {
+    public init(tokenProvider: TokenProviderProtocol) {
         self.tokenProvider = tokenProvider
     }
     

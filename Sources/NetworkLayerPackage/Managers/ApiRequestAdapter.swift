@@ -7,12 +7,13 @@
 
 import Foundation
 import Alamofire
+import CredentialManagement
 
 final public class ApiRequestAdapter: RequestAdapter {
     
-    private let tokenProvider: TokenProviderInterface
+    private let tokenProvider: TokenProviderProtocol
     
-    public init(tokenProvider: TokenProviderInterface) {
+    public init(tokenProvider: TokenProviderProtocol) {
         self.tokenProvider = tokenProvider
     }
     
