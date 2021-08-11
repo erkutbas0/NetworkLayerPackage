@@ -23,7 +23,7 @@ final public class ApiRequestRetrier: RequestRetrier {
     
     // MARK: - Public Methods -
     public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        print("retry")
+        debugger(with: request)
         
         guard let task = request.task, let response = task.response as? HTTPURLResponse else {
             completion(.doNotRetry)
@@ -61,4 +61,15 @@ final public class ApiRequestRetrier: RequestRetrier {
     private func unLock() {
         refreshingLock.unlock()
     }
+    
+    private func debugger(with request: Request) {
+        print("--- RETRIER WORKS ---")
+        if let url = request.request?.url?.absoluteString {
+            print("--- REQUEST     : \(url)")
+        }
+        if let response = request.response?.statusCode {
+            print("--- STATUS CODE : \(response)")
+        }
+    }
+    
 }
