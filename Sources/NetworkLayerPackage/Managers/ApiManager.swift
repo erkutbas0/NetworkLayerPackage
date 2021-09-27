@@ -15,18 +15,6 @@ final public class ApiManager: ApiManagerInterface {
     private var session: Session!
     private var jsonDecoder = JSONDecoder()
     
-//    public init(interceptor: RequestInterceptor? = nil, eventMonitoringManager: EventMonitoringDelegate) {
-//
-//        let configuration = URLSessionConfiguration.ephemeral
-//        configuration.timeoutIntervalForRequest = 60
-//        configuration.requestCachePolicy = .reloadIgnoringCacheData
-//
-//        // add server trust manager
-//
-//        session = Session(configuration: configuration, startRequestsImmediately: true, interceptor: interceptor, eventMonitors: eventMonitoringManager.eventMonitoringModules)
-//
-//    }
-    
     public init(interceptor: RequestInterceptor? = nil, eventMonitors: [EventMonitor] = []) {
         
         let configuration = URLSessionConfiguration.ephemeral
@@ -43,6 +31,20 @@ final public class ApiManager: ApiManagerInterface {
         return Future<R, ErrorResponse> { (promise) in
             self.session.request(urlRequestConvertible).validate().response { (data) in
                 self.responseParser(with: data, via: promise)
+            }
+        }
+        
+    }
+
+    public func execute(_ data: Data, _ urlRequestConvertible: URLRequestConvertible) -> Future<Void, ErrorResponse> {
+        return Future<Void, ErrorResponse> { promise in
+            self.session.upload(data, with: urlRequestConvertible).validate().response { response in
+                switch response.result {
+                case .failure(let error):
+                    promise(.failure(ErrorResponse(serverResponse: ServerResponse(message: error.localizedDescription, errorCode: error.responseCode), apiConnectionErrorType: .serverError(self.returnErrorCode(error: error)))))
+                case .success(_):
+                    promise(.success(()))
+                }
             }
         }
         

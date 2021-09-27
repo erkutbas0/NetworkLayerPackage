@@ -13,5 +13,5 @@ import NetworkEntityPackage
 public protocol ApiManagerInterface {
     
     func execute<R: Codable>(_ urlRequestConvertible: URLRequestConvertible) -> Future<R, ErrorResponse>
-    
+    func execute(_ data: Data, _ urlRequestConvertible: URLRequestConvertible) -> Future<Void, ErrorResponse>
 }
