@@ -14,6 +14,7 @@ open class ApiServiceProvider<T: Codable>: URLRequestConvertible {
     private var method: HTTPMethod
     private var path: String?
     private var isAuthRequested: Bool
+    private var contentType: ContentTypes
     private var data: T?
     
     /// Description: General Api call service provider. It's create a urlRequestConvertible object to pass as an argument to alamofire url session request
@@ -22,12 +23,18 @@ open class ApiServiceProvider<T: Codable>: URLRequestConvertible {
     ///   - path: url path, default value is nil
     ///   - isAuthRequested: it's used to pass accessToken to header or not. Default value is true
     ///   - data: Codable data. If request is post, patch or put it's used as body otherwise as query string
-    public init(baseUrl: String, method: HTTPMethod = .get, path: String? = nil, isAuthRequested: Bool = true, data: T? = nil) {
+    public init(baseUrl: String,
+                method: HTTPMethod = .get,
+                path: String? = nil,
+                isAuthRequested: Bool = true,
+                contentType: ContentTypes = .applicationJson,
+                data: T? = nil) {
+        
         self.baseUrl = baseUrl
         self.method = method
         self.path = path
         self.isAuthRequested = isAuthRequested
-        //self.isBody = isBody
+        self.contentType = contentType
         self.data = data
     }
     
@@ -65,7 +72,7 @@ open class ApiServiceProvider<T: Codable>: URLRequestConvertible {
 
     private var headers: HTTPHeaders {
         var httpHeaders = HTTPHeaders()
-        httpHeaders.add(HTTPHeaderFields.contentType.value)
+        httpHeaders.add(HTTPHeaderFields.contentType(contentType).value)
         return httpHeaders
         
     }

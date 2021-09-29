@@ -10,13 +10,14 @@ import Alamofire
 
 enum HTTPHeaderFields {
     
-    case contentType
+    case contentType(ContentTypes)
     
     var value: HTTPHeader {
         switch self {
-        case .contentType:
-            return HTTPHeader(name: "Content-Type", value: "application/json; charset=utf-8")
+        case .contentType(let data):
+            return HTTPHeader(name: "Content-Type", value: data.description)
         }
     }
 
 }
+
