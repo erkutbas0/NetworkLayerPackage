@@ -36,33 +36,6 @@ final public class ApiManager: ApiManagerInterface {
         
     }
 
-    public func execute(_ data: Data, _ urlRequestConvertible: URLRequestConvertible) -> Future<Void, ErrorResponse> {
-        return Future<Void, ErrorResponse> { promise in
-            self.session.upload(data, with: urlRequestConvertible).validate().response { response in
-                switch response.result {
-                case .failure(let error):
-                    promise(.failure(ErrorResponse(serverResponse: ServerResponse(message: error.localizedDescription, errorCode: error.responseCode), apiConnectionErrorType: .serverError(self.returnErrorCode(error: error)))))
-                case .success(_):
-                    promise(.success(()))
-                }
-            }
-        }
-        
-    }
-    
-    public func execute(_ data: Data, _ urlRequestConvertible: URLRequestConvertible, with progressHandler: @escaping (Progress) -> Void) -> Future<Void, ErrorResponse> {
-        return Future<Void, ErrorResponse> { promise in
-            self.session.upload(data, with: urlRequestConvertible).uploadProgress(closure: progressHandler).validate().response { response in
-                switch response.result {
-                case .failure(let error):
-                    promise(.failure(ErrorResponse(serverResponse: ServerResponse(message: error.localizedDescription, errorCode: error.responseCode), apiConnectionErrorType: .serverError(self.returnErrorCode(error: error)))))
-                case .success(_):
-                    promise(.success(()))
-                }
-            }
-        }
-    }
-    
     private func responseParser<R>(with alamofireData: AFDataResponse<Data?>, via promise: (Result<R, ErrorResponse>) -> Void) where R: Decodable, R : Encodable {
         
         switch alamofireData.result {
